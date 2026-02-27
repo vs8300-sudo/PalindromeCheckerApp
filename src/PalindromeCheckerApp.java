@@ -1,31 +1,44 @@
+
 public class PalindromeCheckerApp {
+
 
     public static void main(String[] args) {
         // UC1: Welcome Message
         System.out.println("Welcome to the Palindrome Checker Management System");
-        System.out.println("Version : 10.0");
+        System.out.println("Version : 11.0");
         System.out.println("---------------------------------------------------");
 
-        String input = "A man a plan a canal Panama";
+        String input = "racecar";
 
-        // UC10: Normalization Logic
-        // replaceAll("[^a-zA-Z0-9]", "") removes everything except letters and numbers
-        String normalized = input.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
+        // Create an instance of the Service Class (OOP Approach)
+        PalindromeService service = new PalindromeService();
 
-        boolean isPalindrome = true;
-
-        // UC10 Hint: Compare characters from both ends
-        for (int i = 0; i < normalized.length() / 2; i++) {
-            // Compare symmetric characters
-            if (normalized.charAt(i) != normalized.charAt(normalized.length() - 1 - i)) {
-                isPalindrome = false;
-                break;
-            }
-        }
+        // Use the service to check the palindrome
+        boolean isPalindrome = service.checkPalindrome(input);
 
         // Output Result
-        System.out.println("Original Input : " + input);
-        System.out.println("Normalized     : " + normalized);
+        System.out.println("Input : " + input);
         System.out.println("Is Palindrome? : " + isPalindrome);
+    }
+}
+
+
+class PalindromeService {
+
+
+    public boolean checkPalindrome(String input) {
+        // UC11 Hint: Initialize pointers
+        int start = 0;
+        int end = input.length() - 1;
+
+        // Compare characters moving inward
+        while (start < end) {
+            if (input.charAt(start) != input.charAt(end)) {
+                return false;
+            }
+            start++;
+            end--;
+        }
+        return true;
     }
 }
