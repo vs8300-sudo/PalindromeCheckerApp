@@ -1,40 +1,44 @@
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 /**
  * PalindromeCheckerApp
- * Use Case 5: Stack Based Palindrome Checker
+ * Use Case 6: Queue + Stack Fairness Check
  * * Description:
- * This class validates a palindrome using a Stack
- * data structure which follows the LIFO principle.
- * * @author Developer
- * @version 5.0
+ * This class demonstrates palindrome validation using
+ * two different data structures:
+ * - Queue (FIFO - First In First Out)
+ * - Stack (LIFO - Last In First Out)
  */
 public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
         // UC1: Welcome Message
         System.out.println("Welcome to the Palindrome Checker Management System");
-        System.out.println("Version : 5.0");
+        System.out.println("Version : 6.0");
         System.out.println("---------------------------------------------------");
 
-        // UC5 Hint: Declare and initialize the input string.
-        String input = "noon";
+        // UC6 Hint: Define the input string to validate
+        String input = "civic";
 
-        // UC5 Hint: Create a Stack to store characters.
+        // UC6 Hint: Create a Queue (FIFO) and a Stack (LIFO)
+        Queue<Character> queue = new LinkedList<>();
         Stack<Character> stack = new Stack<>();
 
-        // UC5 Hint: Push each character of the string into the stack.
+        // UC6 Hint: Insert each character into both queue and stack
         for (char c : input.toCharArray()) {
-            stack.push(c);
+            queue.add(c);  // Enqueue (FIFO)
+            stack.push(c); // Push (LIFO)
         }
 
-        // UC5 Hint: Assume palindrome initially.
+        // UC6 Hint: Flag to track palindrome status
         boolean isPalindrome = true;
 
-        // UC5 Hint: Iterate again through original string and pop to compare.
-        for (char c : input.toCharArray()) {
-            // pop() retrieves the top element (the last character pushed)
-            if (c != stack.pop()) {
+        // UC6 Hint: Compare characters until the queue becomes empty
+        while (!queue.isEmpty()) {
+            // dequeue() gets the first char, pop() gets the last char
+            if (!queue.remove().equals(stack.pop())) {
                 isPalindrome = false;
                 break;
             }
