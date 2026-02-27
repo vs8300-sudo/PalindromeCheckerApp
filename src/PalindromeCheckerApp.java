@@ -1,44 +1,41 @@
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Stack;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 /**
  * PalindromeCheckerApp
- * Use Case 6: Queue + Stack Fairness Check
+ * Use Case 7: Deque Based Optimized Palindrome Checker
  * * Description:
- * This class demonstrates palindrome validation using
- * two different data structures:
- * - Queue (FIFO - First In First Out)
- * - Stack (LIFO - Last In First Out)
+ * This class validates a palindrome using a Deque (Double Ended Queue).
+ * Characters are compared by removing elements from both ends.
+ * * @author Developer
+ * @version 7.0
  */
 public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
         // UC1: Welcome Message
         System.out.println("Welcome to the Palindrome Checker Management System");
-        System.out.println("Version : 6.0");
+        System.out.println("Version : 7.0");
         System.out.println("---------------------------------------------------");
 
-        // UC6 Hint: Define the input string to validate
-        String input = "civic";
+        // UC7 Hint: Define the input string
+        String input = "refer";
 
-        // UC6 Hint: Create a Queue (FIFO) and a Stack (LIFO)
-        Queue<Character> queue = new LinkedList<>();
-        Stack<Character> stack = new Stack<>();
+        // UC7 Hint: Create a Deque to store characters
+        Deque<Character> deque = new ArrayDeque<>();
 
-        // UC6 Hint: Insert each character into both queue and stack
+        // UC7 Hint: Add each character to the deque
         for (char c : input.toCharArray()) {
-            queue.add(c);  // Enqueue (FIFO)
-            stack.push(c); // Push (LIFO)
+            deque.addLast(c);
         }
 
-        // UC6 Hint: Flag to track palindrome status
+        // UC7 Hint: Flag to track palindrome result
         boolean isPalindrome = true;
 
-        // UC6 Hint: Compare characters until the queue becomes empty
-        while (!queue.isEmpty()) {
-            // dequeue() gets the first char, pop() gets the last char
-            if (!queue.remove().equals(stack.pop())) {
+        // UC7 Hint: Continue comparison while more than one element exists
+        while (deque.size() > 1) {
+            // Remove from both ends and compare
+            if (!deque.removeFirst().equals(deque.removeLast())) {
                 isPalindrome = false;
                 break;
             }
