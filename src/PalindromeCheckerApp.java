@@ -1,6 +1,5 @@
 import java.util.LinkedList;
 
-
 public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
@@ -37,3 +36,4 @@ public class PalindromeCheckerApp {
         System.out.println("Is Palindrome? : " + isPalindrome);
     }
 }
+
