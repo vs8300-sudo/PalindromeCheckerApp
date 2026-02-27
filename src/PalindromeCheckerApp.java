@@ -1,48 +1,35 @@
-import java.util.ArrayDeque;
-import java.util.Deque;
-
-/**
- * PalindromeCheckerApp
- * Use Case 7: Deque Based Optimized Palindrome Checker
- * * Description:
- * This class validates a palindrome using a Deque (Double Ended Queue).
- * Characters are compared by removing elements from both ends.
- * * @author Developer
- * @version 7.0
- */
 public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
         // UC1: Welcome Message
         System.out.println("Welcome to the Palindrome Checker Management System");
-        System.out.println("Version : 7.0");
+        System.out.println("Version : 9.0");
         System.out.println("---------------------------------------------------");
 
-        // UC7 Hint: Define the input string
-        String input = "refer";
+        String input = "madam";
 
-        // UC7 Hint: Create a Deque to store characters
-        Deque<Character> deque = new ArrayDeque<>();
-
-        // UC7 Hint: Add each character to the deque
-        for (char c : input.toCharArray()) {
-            deque.addLast(c);
-        }
-
-        // UC7 Hint: Flag to track palindrome result
-        boolean isPalindrome = true;
-
-        // UC7 Hint: Continue comparison while more than one element exists
-        while (deque.size() > 1) {
-            // Remove from both ends and compare
-            if (!deque.removeFirst().equals(deque.removeLast())) {
-                isPalindrome = false;
-                break;
-            }
-        }
+        // Call the recursive method
+        boolean isPalindrome = check(input, 0, input.length() - 1);
 
         // Output Result
         System.out.println("Input : " + input);
         System.out.println("Is Palindrome? : " + isPalindrome);
     }
+
+
+    private static boolean check(String s, int start, int end) {
+        // Base Condition 1: If pointers cross, all characters matched
+        if (start >= end) {
+            return true;
+        }
+
+        // Base Condition 2: If characters mismatch, it's not a palindrome
+        if (s.charAt(start) != s.charAt(end)) {
+            return false;
+        }
+
+        // Recursive Call: Check the next inner pair
+        return check(s, start + 1, end - 1);
+    }
 }
+
