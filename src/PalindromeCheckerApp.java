@@ -3,33 +3,29 @@ public class PalindromeCheckerApp {
     public static void main(String[] args) {
         // UC1: Welcome Message
         System.out.println("Welcome to the Palindrome Checker Management System");
-        System.out.println("Version : 9.0");
+        System.out.println("Version : 10.0");
         System.out.println("---------------------------------------------------");
 
-        String input = "madam";
+        String input = "A man a plan a canal Panama";
 
-        // Call the recursive method
-        boolean isPalindrome = check(input, 0, input.length() - 1);
+        // UC10: Normalization Logic
+        // replaceAll("[^a-zA-Z0-9]", "") removes everything except letters and numbers
+        String normalized = input.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
+
+        boolean isPalindrome = true;
+
+        // UC10 Hint: Compare characters from both ends
+        for (int i = 0; i < normalized.length() / 2; i++) {
+            // Compare symmetric characters
+            if (normalized.charAt(i) != normalized.charAt(normalized.length() - 1 - i)) {
+                isPalindrome = false;
+                break;
+            }
+        }
 
         // Output Result
-        System.out.println("Input : " + input);
+        System.out.println("Original Input : " + input);
+        System.out.println("Normalized     : " + normalized);
         System.out.println("Is Palindrome? : " + isPalindrome);
     }
-
-
-    private static boolean check(String s, int start, int end) {
-        // Base Condition 1: If pointers cross, all characters matched
-        if (start >= end) {
-            return true;
-        }
-
-        // Base Condition 2: If characters mismatch, it's not a palindrome
-        if (s.charAt(start) != s.charAt(end)) {
-            return false;
-        }
-
-        // Recursive Call: Check the next inner pair
-        return check(s, start + 1, end - 1);
-    }
 }
-
