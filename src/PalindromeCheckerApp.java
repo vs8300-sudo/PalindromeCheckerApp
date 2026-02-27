@@ -1,44 +1,32 @@
 /**
- * =====================================================
- * MAIN CLASS - UseCase2PalindromeCheckerApp
- * =====================================================
- * Use Case 2: Hardcoded Palindrome Validation
- *
- * Description:
- * This class demonstrates basic palindrome validation
- * using a hardcoded string value.
- *
- * At this stage, the application:
- * - Stores a predefined string
- * - Compares characters from both ends
- * - Determines whether the string is a palindrome
- * - Displays the result on the console
- *
- * This use case introduces fundamental comparison logic
- * before using advanced data structures.
- *
- * @author Developer
- * @version 2.0
+ * PalindromeCheckerApp
+ * UC3: Reverse String Based Palindrome Check
+ * * Objective: Validate palindrome by reversing the string using a loop.
  */
-public class UseCase2PalindromeCheckerApp {
-
+public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
-        // Hardcoded string literal
-        String input = "madam";
-        boolean isPalindrome = true;
+        // UC1: Welcome Message
+        System.out.println("Welcome to the Palindrome Checker Management System");
+        System.out.println("Version : 3.0");
+        System.out.println("System initialized successfully.");
+        System.out.println("---------------------------------------------------");
 
-        // Loop only till half of the string length as per the hint
-        for (int i = 0; i < input.length() / 2; i++) {
-            // Compare character at start (i) with character at corresponding end
-            if (input.charAt(i) != input.charAt(input.length() - 1 - i)) {
-                isPalindrome = false;
-                break; // Exit loop early if a mismatch is found
-            }
+        // UC3: String to check
+        String input = "madam";
+        String reversed = "";
+
+        // UC3 Hint: Iterate from the last character to the first
+        for (int i = input.length() - 1; i >= 0; i--) {
+            reversed += input.charAt(i); // String concatenation
         }
 
-        // Console Output
+        // UC3: Compare original and reversed using equals()
+        boolean isPalindrome = input.equals(reversed);
+
+        // Display Result
         System.out.println("Input text: " + input);
+        System.out.println("Reversed text: " + reversed);
         System.out.println("Is it a Palindrome ? : " + isPalindrome);
     }
 }
