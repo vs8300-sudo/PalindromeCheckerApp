@@ -5,49 +5,49 @@ public class PalindromeCheckerApp {
     public static void main(String[] args) {
         // UC1: Welcome Message
         System.out.println("Welcome to the Palindrome Checker Management System");
-        System.out.println("Version : 12.0 (Strategy Pattern)");
+        System.out.println("Version : 13.0 (Benchmarking)");
         System.out.println("---------------------------------------------------");
 
         String input = "level";
 
-        // Step 1: Define the strategy we want to use at runtime
+        // Define Strategy (Reusing StackStrategy from UC12)
         PalindromeStrategy strategy = new StackStrategy();
 
-        // Step 2: Execute the algorithm through the interface
+        // Capture Start Time
+        long startTime = System.nanoTime();
+
+        // Execute Algorithm
         boolean isPalindrome = strategy.check(input);
+
+        // Capture End Time
+        long endTime = System.nanoTime();
+
+        // Calculate Duration
+        long duration = (endTime - startTime);
 
         // Output Result
         System.out.println("Input : " + input);
-        System.out.println("Strategy Used: StackStrategy");
         System.out.println("Is Palindrome? : " + isPalindrome);
+        System.out.println("Execution Time : " + duration + " ns");
     }
+}
 
-    interface PalindromeStrategy {
-        boolean check(String input);
-    }
 
+interface PalindromeStrategy {
+    boolean check(String input);
 }
 
 
 class StackStrategy implements PalindromeStrategy {
-
     @Override
     public boolean check(String input) {
-        // UC12 Hint: Create a stack to store characters
         Stack<Character> stack = new Stack<>();
-
-        // Push each character onto the stack (LIFO)
         for (char c : input.toCharArray()) {
             stack.push(c);
         }
-
-        // Compare characters by popping from the stack
         for (char c : input.toCharArray()) {
-            if (c != stack.pop()) {
-                return false;
-            }
+            if (c != stack.pop()) return false;
         }
         return true;
     }
 }
-
